@@ -359,7 +359,7 @@ con control version clonando el repositorio. Luego he seleccionado el
 dataset de MetabotypingPaper que contiene dos archivos con la metadata y
 los metabólitos a tarvés de la función read_csv. He añadido
 setwd(“/Users/alberto_w/metaboData”) al principio ya que sino no me
-dejaba generar el documento html.</p>
+dejaba generar el documento pdf a la hora de hacer knit.</p>
 <pre class="r"><code>setwd(&quot;/Users/alberto_w/metaboData&quot;)
 library(readr)
 DataInfo_S013 &lt;- read_csv(&quot;Datasets/2018-MetabotypingPaper/DataInfo_S013.csv&quot;)</code></pre>
@@ -387,7 +387,11 @@ DataInfo_S013 &lt;- read_csv(&quot;Datasets/2018-MetabotypingPaper/DataInfo_S013
 SummarizedExperiment que contenga los datos y los metadatos (información
 acerca del dataset, las filas y las columnas).</h3>
 <p>Para crear el contenedor tipo SummarizedExperiment he consultado <a href="https://rdrr.io/bioc/SummarizedExperiment/f/vignettes/SummarizedExperiment.Rmd" class="uri">https://rdrr.io/bioc/SummarizedExperiment/f/vignettes/SummarizedExperiment.Rmd</a>
-y he añadido los datos y la metadata en una variable llamada se.</p>
+y he añadido los datos y la metadata en una variable llamada se. He
+eliminado la primera columna de DataValues ya que era una duplicidad del
+índice que identifica las muestras y me daba error al juntar ambas
+variables en el SummarizedExperiment. Finalmente he guardado el objeto
+SE con save() para poder subrilo al repositorio de Github.</p>
 <pre class="r"><code>library(SummarizedExperiment)</code></pre>
 <pre><code>## Loading required package: MatrixGenerics</code></pre>
 <pre><code>## Loading required package: matrixStats</code></pre>
@@ -473,7 +477,12 @@ actividades.</h3>
 <p>PAra la exploración del dataset he usado dim() para ver el número de
 features y el número de muestras y he usado también colData() para saber
 la descripción de las features que hay en el dataset, su nombre y su
-tipo de variable.</p>
+tipo de variable. Los resultados indican que hay 39 variables y 695
+muestras. Entre las varaibles estan las iniciales que dan información de
+la muestra como Age, Gender, Group y después van las variables numéricas
+que son los diferentes metabólitos que se han analizado como Creatinine.
+Hubiera estado bien que en la columna de DataDescription de la metadata,
+se especificara con más claridad qué indica cada variable.</p>
 <pre class="r"><code>dim(se)  # Número de filas (features) y columnas (muestras)</code></pre>
 <pre><code>## [1]  39 695</code></pre>
 <pre class="r"><code>colData(se)  # Descripción de los datos de las muestras</code></pre>
