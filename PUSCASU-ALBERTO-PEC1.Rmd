@@ -1,0 +1,41 @@
+### 1. Seleccionar un dataset de metabolómica del repositorio https://github.com/nutrimetabolomics/metaboData/
+
+Para seleccionar el dataset he creado un nuevo proyecto en Rstudio con control version clonando el repositorio. Luego he seleccionado el dataset de MetabotypingPaper que contiene dos archivos con la metadata y los metabólitos a tarvés de la función read_csv. He añadido setwd("/Users/alberto_w/metaboData") al principio ya que sino no me dejaba generar el documento html.
+
+
+```{r}
+setwd("/Users/alberto_w/metaboData")
+library(readr)
+DataInfo_S013 <- read_csv("Datasets/2018-MetabotypingPaper/DataInfo_S013.csv")
+DataValues_S013 <- read_csv("Datasets/2018-MetabotypingPaper/DataValues_S013.csv")
+```
+### 2. Una vez descargados los datos cread un contenedor del tipo SummarizedExperiment que contenga los datos y los metadatos (información acerca del dataset, las filas y las columnas).
+
+Para crear el contenedor tipo SummarizedExperiment he consultado https://rdrr.io/bioc/SummarizedExperiment/f/vignettes/SummarizedExperiment.Rmd y he añadido los datos y la metadata en una variable llamada se.
+```{r}
+library(SummarizedExperiment)
+se <- SummarizedExperiment(
+  assays = list(counts = as.matrix(DataValues_S013[,-1])), # Datos de observación menos la primera columna que es el indice repetido
+  colData = DataInfo_S013 # Metadatos para las muestras
+)
+se
+```
+### 3. Llevad a cabo una exploración del dataset que os proporcione una visión general del mismo en la línea de lo que hemos visto en las actividades.
+
+PAra la exploración del dataset he usado dim() para ver el número de features y el número de muestras y he usado también colData() para saber la descripción de las features que hay en el dataset, su nombre y su tipo de variable.
+
+```{r}
+dim(se)  # Número de filas (features) y columnas (muestras)
+```
+```{r}
+colData(se)  # Descripción de los datos de las muestras
+```
+### 4. Elaborad un informe que describa el proceso que habéis realizado, incluyendo la descarga de los datos, la creación del contenedor, la exploración de los datos y la reposición de los datos en github.
+
+El informe realizado es este documento RMarkdown, donde se ve tanto el razonamiento de los pasos como el código y resultado.
+
+### 5. Cread un repositorio de github.
+
+El link al repositorio de github es: 
+
+
