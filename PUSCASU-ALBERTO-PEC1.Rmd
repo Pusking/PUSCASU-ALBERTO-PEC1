@@ -19,6 +19,7 @@ se <- SummarizedExperiment(
   colData = DataInfo_S013 # Metadatos para las muestras
 )
 se
+save(se, file = "datos.Rda")
 ```
 ### 3. Llevad a cabo una exploración del dataset que os proporcione una visión general del mismo en la línea de lo que hemos visto en las actividades.
 
@@ -36,6 +37,13 @@ El informe realizado es este documento RMarkdown, donde se ve tanto el razonamie
 
 ### 5. Cread un repositorio de github.
 
-El link al repositorio de github es: 
+El link al repositorio de github es: https://github.com/Pusking/PUSCASU-ALBERTO-PEC1.git
+Para crearlo, he ido a mi cuenta de github y  "New repository", subiendo a posteriori los archivos deseados.
+
+Incluye: 
+
+- Archivo RMarkdown y HTML donde se ve el informe de la PEC1 con su razonamiento y pasos seguidos en cada apartado.
+- Datos.rda el objeto contenedor con los datos en formato binario.
+- DataInfo_S013 y DataValues_S013 los archivos originales en formato csv
 
 
